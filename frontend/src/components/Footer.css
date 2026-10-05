@@ -1,0 +1,77 @@
+.site-footer {
+  background: var(--yale-blue-dark);
+  color: rgba(255, 255, 255, 0.85);
+  margin-top: 64px;
+  border-top: 3px solid var(--yale-gold);
+}
+
+.site-footer-inner {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 40px;
+  padding: 48px 24px 32px;
+}
+
+.site-footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  max-width: 320px;
+}
+
+.site-footer-bulldog {
+  width: 56px;
+  height: 50px;
+  color: var(--yale-gold);
+  flex-shrink: 0;
+}
+
+.site-footer-title {
+  font-family: "Georgia", serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 4px;
+}
+
+.site-footer-tagline {
+  font-size: 0.85rem;
+  color: var(--yale-gold);
+  margin: 0;
+}
+
+.site-footer-links {
+  display: flex;
+  gap: 56px;
+  flex-wrap: wrap;
+}
+
+.site-footer-links h4 {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--yale-gold);
+  margin: 0 0 12px;
+}
+
+.site-footer-links a,
+.site-footer-links p {
+  display: block;
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0 0 8px;
+  text-decoration: none;
+}
+
+.site-footer-links a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.site-footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 16px 24px;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.55);
+}

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Campus Customs — App Check (Problem 11)</title>
+<style>
+  :root {
+    --yale-blue: #00356b;
+    --yale-blue-dark: #00193d;
+    --yale-gold: #d4af37;
+    --ink: #16202b;
+    --paper-muted: #f6f7f9;
+    --border: #dde3ea;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--ink);
+    background: var(--paper-muted);
+    margin: 0;
+    padding: 0 0 60px;
+  }
+  header {
+    background: var(--yale-blue);
+    color: #fff;
+    padding: 32px 24px;
+    border-bottom: 3px solid var(--yale-gold);
+  }
+  header h1 {
+    margin: 0 0 6px;
+    font-family: Georgia, serif;
+    font-size: 1.7rem;
+  }
+  header p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.95rem;
+  }
+  main {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 32px 24px;
+  }
+  .summary {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 36px;
+  }
+  .summary table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+  }
+  .summary th, .summary td {
+    text-align: left;
+    padding: 6px 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .summary th {
+    color: var(--yale-blue);
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+  }
+  .status-pass {
+    color: #1a7f37;
+    font-weight: 700;
+  }
+  section.check {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 28px;
+    margin-bottom: 32px;
+  }
+  section.check h2 {
+    font-family: Georgia, serif;
+    color: var(--yale-blue-dark);
+    font-size: 1.3rem;
+    margin: 0 0 4px;
+    border-bottom: 2px solid var(--yale-gold);
+    padding-bottom: 10px;
+  }
+  .check-sub {
+    font-family: Georgia, serif;
+    color: var(--yale-blue);
+    font-size: 1.05rem;
+    margin: 24px 0 4px;
+  }
+  .ground-truth {
+    background: var(--paper-muted);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-size: 0.85rem;
+    font-family: "SFMono-Regular", Consolas, Menlo, monospace;
+    margin: 12px 0 18px;
+    color: #45515f;
+  }
+  .check img {
+    max-width: 100%;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: block;
+    margin: 14px 0;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  }
+  .check p.caption {
+    font-size: 0.92rem;
+    color: #3a4552;
+    line-height: 1.55;
+    margin: 8px 0 0;
+  }
+  .verdict {
+    display: inline-block;
+    margin-top: 14px;
+    background: #e6f4ea;
+    color: #1a7f37;
+    border: 1px solid #b6e3c2;
+    border-radius: 6px;
+    padding: 6px 14px;
+    font-size: 0.85rem;
+    font-weight: 700;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Campus Customs — App Check</h1>
+  <p>Problem 11: Site Testing. Live, end-to-end verification of the chatbot agent and website, tested against the real data in <code>campus_customs.db</code> on 2026-10-05.</p>
+</header>
+
+<main>
+
+  <div class="summary">
+    <table>
+      <tr><th>#</th><th>Check</th><th>Result</th></tr>
+      <tr><td>1</td><td>Chat returns true DB stock &amp; price for a specific product</td><td class="status-pass">PASS</td></tr>
+      <tr><td>2</td><td>Chat category search → clickable product cards → single product page</td><td class="status-pass">PASS</td></tr>
+      <tr><td>3</td><td>Usability feature (Problem 9): mobile hamburger navigation</td><td class="status-pass">PASS</td></tr>
+    </table>
+  </div>
+
+  <section class="check">
+    <h2>Check 1 — Chat Inventory &amp; Price Lookup</h2>
+    <p>Asked the chatbot directly for the price and full per-size stock of one catalogue product, then compared its answer against the raw database.</p>
+
+    <div class="ground-truth">
+      sqlite3 campus_customs.db — ground truth for <strong>champion-reverse-weave-hoodie-1</strong>:<br />
+      price = 68.0 &nbsp;|&nbsp; XS 0, S 25, M 20, L 20, XL 0, XXL 15 &nbsp;|&nbsp; total = 80
+    </div>
+
+    <img src="app_check_images/inventory.png" alt="Chat answering a price and stock question, matching the database exactly" />
+    <p class="caption">
+      Asked: "What is the price and exact stock by size for the Champion Reverse Weave Hoodie 1?" The assistant replied
+      "$68. Stock by size: XS 0, S 25, M 20, L 20, XL 0, XXL 15 (80 total)" — an exact match to the <code>catalogue</code>/<code>inventory</code>
+      rows queried directly above, including the two sizes that are genuinely out of stock (XS, XL), confirming the agent's
+      <code>get_product</code>/<code>get_stock</code> tools return real data rather than a guess.
+    </p>
+    <span class="verdict">✓ Matches database exactly</span>
+  </section>
+
+  <section class="check">
+    <h2>Check 2 — Chat Category Search → Product Cards → Single Product Page</h2>
+    <p>Asked the chatbot a category question and confirmed the website itself updates with clickable results, and that clicking one leads to its full product detail page.</p>
+
+    <h3 class="check-sub">2a. Category question produces clickable result cards on the website</h3>
+    <img src="app_check_images/category_search.png" alt="Products page showing 40 crewneck matches as product cards after a chat question" />
+    <p class="caption">
+      Asked: "What crewnecks do you have?" The Products page itself (not just the chat panel) updated to show all 40 real
+      catalogue matches as full product cards, with a banner confirming they came from the chat question — this is the
+      API contract from Problem 7, where the agent's structured <code>products</code> list drives the page directly.
+    </p>
+
+    <h3 class="check-sub">2b. Clicking a result card opens that product's single detail page</h3>
+    <img src="app_check_images/product_detail.png" alt="Single product detail page for the Champion Mens Triumph Raglan Crew after clicking its card" />
+    <p class="caption">
+      Clicking the "Champion Mens Triumph Raglan Crew" card from the chat-driven results above opened its full single-item
+      page — large image, price, description, color swatches, and a live per-size stock selector — proving the chat-produced
+      cards use the same click-through built in Problem 3, not a dead end.
+    </p>
+    <span class="verdict">✓ Cards appear and link through correctly</span>
+  </section>
+
+  <section class="check">
+    <h2>Check 3 — Usability Improvement: Mobile Navigation (Problem 9)</h2>
+    <p>Of the four usability improvements implemented in Problem 9, this check verifies the mobile hamburger navigation added to fix a real dead end (no way to reach the nav links at all on a phone-sized screen before this fix).</p>
+
+    <img src="app_check_images/mobile_nav.png" alt="Mobile viewport showing the opened hamburger menu with Home, Products, About Us links and account actions" />
+    <p class="caption">
+      At a 375px-wide mobile viewport, tapping the hamburger icon opens a full menu with Home/Products/About Us links plus
+      the signed-in user's greeting and Log Out button — confirming the fix: a shopper on a phone can now actually navigate
+      the site, which the previous CSS (hiding the nav with no replacement) did not allow.
+    </p>
+    <span class="verdict">✓ Mobile nav opens and is fully usable</span>
+  </section>
+
+</main>
+</body>
+</html>

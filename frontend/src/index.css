@@ -1,0 +1,238 @@
+:root {
+  --yale-blue: #00356b;
+  --yale-blue-dark: #00193d;
+  --yale-blue-light: #e8f0f8;
+  --yale-red: #c0392b;
+  --yale-gold: #d4af37;
+  --ink: #16202b;
+  --paper: #ffffff;
+  --paper-muted: #f6f7f9;
+  --border: #dde3ea;
+
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+body {
+  color: var(--ink);
+}
+
+/* A preppy tartan sett, not a plain grid: each axis repeats a wide navy
+   band, a gray band, and two offset thin "overcheck" threads (gold + a
+   fainter navy hairline) of different widths within one 96px period --
+   real tartans are asymmetric, woven-look bands, not a uniform checkerboard.
+   The same sett is repeated on both axes so the bands cross and their
+   alpha stacks at the intersections, which is what actually reads as
+   "woven" rather than "graph paper." */
+body,
+.plaid-bg {
+  background-color: var(--paper-muted);
+  background-image: repeating-linear-gradient(
+      0deg,
+      rgba(0, 53, 107, 0.1) 0px,
+      rgba(0, 53, 107, 0.1) 22px,
+      transparent 22px,
+      transparent 30px,
+      rgba(122, 134, 148, 0.09) 30px,
+      rgba(122, 134, 148, 0.09) 54px,
+      transparent 54px,
+      transparent 96px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(0, 53, 107, 0.1) 0px,
+      rgba(0, 53, 107, 0.1) 22px,
+      transparent 22px,
+      transparent 30px,
+      rgba(122, 134, 148, 0.09) 30px,
+      rgba(122, 134, 148, 0.09) 54px,
+      transparent 54px,
+      transparent 96px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      rgba(212, 175, 55, 0.5) 0px,
+      rgba(212, 175, 55, 0.5) 3px,
+      transparent 3px,
+      transparent 96px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(212, 175, 55, 0.5) 0px,
+      rgba(212, 175, 55, 0.5) 3px,
+      transparent 3px,
+      transparent 96px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      rgba(0, 53, 107, 0.22) 64px,
+      rgba(0, 53, 107, 0.22) 65px,
+      transparent 65px,
+      transparent 96px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(0, 53, 107, 0.22) 64px,
+      rgba(0, 53, 107, 0.22) 65px,
+      transparent 65px,
+      transparent 96px
+    );
+}
+
+.plaid-bg-dark {
+  background-color: var(--yale-blue-dark);
+  background-image: repeating-linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.06) 0px,
+      rgba(255, 255, 255, 0.06) 22px,
+      transparent 22px,
+      transparent 30px,
+      rgba(0, 53, 107, 0.5) 30px,
+      rgba(0, 53, 107, 0.5) 54px,
+      transparent 54px,
+      transparent 96px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.06) 0px,
+      rgba(255, 255, 255, 0.06) 22px,
+      transparent 22px,
+      transparent 30px,
+      rgba(0, 53, 107, 0.5) 30px,
+      rgba(0, 53, 107, 0.5) 54px,
+      transparent 54px,
+      transparent 96px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      rgba(212, 175, 55, 0.4) 0px,
+      rgba(212, 175, 55, 0.4) 3px,
+      transparent 3px,
+      transparent 96px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(212, 175, 55, 0.4) 0px,
+      rgba(212, 175, 55, 0.4) 3px,
+      transparent 3px,
+      transparent 96px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.12) 64px,
+      rgba(255, 255, 255, 0.12) 65px,
+      transparent 65px,
+      transparent 96px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.12) 64px,
+      rgba(255, 255, 255, 0.12) 65px,
+      transparent 65px,
+      transparent 96px
+    );
+}
+
+/* A navy duotone treatment for campus photography, so full-color photos
+   (green leaves, blue sky) read as part of the same blue/white/gray
+   collegiate palette rather than clashing with it. */
+.photo-duotone {
+  position: relative;
+  overflow: hidden;
+}
+
+.photo-duotone img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.15) brightness(1.05);
+}
+
+.photo-duotone::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--yale-blue);
+  mix-blend-mode: multiply;
+  opacity: 0.55;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Georgia", "Times New Roman", serif;
+  letter-spacing: 0.01em;
+  margin: 0 0 0.5em;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 20px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 22px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, transform 0.05s ease;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn-primary {
+  background: var(--yale-blue);
+  color: var(--paper);
+}
+
+.btn-primary:hover {
+  background: var(--yale-blue-dark);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--yale-blue);
+  border: 1.5px solid var(--yale-blue);
+}
+
+.btn-outline:hover {
+  background: var(--yale-blue-light);
+}

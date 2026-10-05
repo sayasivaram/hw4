@@ -1,0 +1,22 @@
+# Secrets -- never commit the real .env; .env.example documents the keys.
+.env
+
+# The data pack (provided separately, not part of the submitted repo):
+# the real product catalogue database and product photos.
+data/campus_customs.db
+data/products/
+
+# Python (backend)
+backend/.venv/
+backend/__pycache__/
+backend/**/__pycache__/
+*.pyc
+backend/.session_secret
+
+# Node (frontend) -- frontend/ has its own .gitignore for node_modules/dist,
+# kept here too in case this is applied from a different working directory.
+frontend/node_modules/
+frontend/dist/
+
+# OS
+.DS_Store

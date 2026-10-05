@@ -1,0 +1,145 @@
+.product-detail {
+  padding: 30px 24px 70px;
+}
+
+.product-detail-state {
+  padding: 60px 24px;
+  text-align: center;
+}
+
+.product-detail-back {
+  display: inline-block;
+  color: var(--yale-blue);
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.product-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.product-detail-image-wrap {
+  background: #eef1f5;
+  border-radius: 10px;
+  overflow: hidden;
+  position: sticky;
+  top: 96px;
+}
+
+.product-detail-image-wrap img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.product-detail-type {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--yale-blue);
+  font-weight: 700;
+  font-size: 0.8rem;
+  margin: 0 0 4px;
+}
+
+.product-detail-info h1 {
+  font-size: 2rem;
+  color: var(--yale-blue-dark);
+}
+
+.product-detail-price {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 18px;
+}
+
+.product-detail-desc {
+  color: #45515f;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.product-detail-section {
+  margin-bottom: 22px;
+}
+
+.product-detail-section h4 {
+  font-family: "Inter", sans-serif;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #637081;
+  margin-bottom: 10px;
+}
+
+.product-detail-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  background: var(--yale-blue-light);
+  color: var(--yale-blue-dark);
+  border-radius: 999px;
+  padding: 5px 12px;
+  font-size: 0.8rem;
+  text-transform: capitalize;
+}
+
+.chip-muted {
+  background: var(--paper-muted);
+  color: #556474;
+  border: 1px solid var(--border);
+}
+
+.size-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.size-pill {
+  min-width: 48px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1.5px solid var(--border);
+  background: var(--paper);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.size-pill:hover:not(.size-pill-disabled) {
+  border-color: var(--yale-blue);
+}
+
+.size-pill-selected {
+  border-color: var(--yale-blue);
+  background: var(--yale-blue);
+  color: #fff;
+}
+
+.size-pill-disabled {
+  opacity: 0.4;
+  text-decoration: line-through;
+  cursor: not-allowed;
+}
+
+.product-detail-stock {
+  font-size: 0.85rem;
+  color: #637081;
+  margin: 0;
+}
+
+@media (max-width: 820px) {
+  .product-detail-grid {
+    grid-template-columns: 1fr;
+  }
+  .product-detail-image-wrap {
+    position: static;
+  }
+}
