@@ -225,3 +225,22 @@ _None — added `AuditEntry` to `models.py` (mirroring the Homework 3 audit desi
 _N/A — no follow-up was needed._
 
 ---
+
+## Problem 13: Push to GitHub and Submit the URL
+
+**Name/Title:** Final gut-check, restructure to the target file layout, and push the repo
+
+**Prompt:**
+> Let's do Problem 13: Push to GitHub and Submit the URL. Begin by doing a gut check of all work for this homework. Ensure all links, documents, and files are correctly structured and parsable. Ensure that all requirements have been fulfilled and make sense and that this is easily gradable. Once that is done, ensure that the file layout matches the following screenshot. I want to use .gitignore to ensure that I do not put in the real .env, campus_customs.db or product images into the github repo. Use .env.example with placeholders only. Readme.md should explain how to run the front and back end after placing the data pack
+>
+> *(screenshot of a target hw4/ file tree: root AI_prompts.md/requirements.txt/.env.example/.gitignore/README.md, frontend/, backend/ with main.py/agent.py/models.py/tools.py/prompts/prompt.md, and output/ with harness.md/design.md/usability.md/app_check.html/app_check_images/audit_trail.json)*
+>
+> Once you have pushed this, please provide the repo URL to this public github repository so that I can submit it
+
+**Follow-up prompts:**
+_None -- ran a full gut-check first (frontend `tsc --noEmit`, backend import check, `audit_trail.json` JSON validity, every image link in `app_check.html` resolving) and found one real gap: `output/design.md` (shown in the target screenshot) had never actually been written despite Problem 10's styling work being done and logged in `AI_prompts.md` -- created it, documenting the branding/tartan/photo-duotone/homepage-ordering decisions at the same depth as `usability.md`. Restructured to match the target layout exactly: moved `backend/requirements.txt` to the project root, updated `backend/tools.py`'s `.env` loader to look at the Homework 4 root instead of the parent `AI Foundations` folder (since this homework is now its own repo), created `.env.example` (placeholders only) and a real local `.env` at the new location, wrote one consolidated root `.gitignore` covering the real `.env`, `data/campus_customs.db`, `data/products/`, the backend venv/session-secret, and node_modules/dist (removing the now-redundant `backend/.gitignore`), and wrote a root `README.md` covering the data-pack placement step and how to run both the backend and frontend. Also cleaned up unused leftover Vite scaffold assets (`hero.png`, `vite.svg`, `icons.svg`) and replaced the default Vite `frontend/README.md` and page `<title>`. Re-verified everything still worked after the restructure (type-check, backend import, and a live chat request confirming the relocated `.env` still loads correctly), then `git init`, staged and double-checked (grepped staged files for the real API key, confirmed `.env`/db/images were absent from `git status`) before committing, created the GitHub repo via `gh repo create hw4 --public --source=. --remote=origin --push`, and confirmed via the GitHub API that the pushed repo is public and its top-level contents match the target layout._
+
+**Why an additional prompt was needed:**
+_N/A -- no follow-up was needed; the one gap found (missing design.md) was caught and fixed during the gut-check, before reporting completion._
+
+---
